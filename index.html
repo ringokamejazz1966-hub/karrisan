@@ -625,6 +625,7 @@ async function callAPI() {
       body: JSON.stringify({
         action: 'chat',
         origin: window.location.origin,
+        token: 'xK9mP2nQ8rT5vW1yA4bC7dE0fG3hJ6kL',
         system: SYSTEM_PROMPT,
         messages: conversationHistory
       }),
@@ -864,7 +865,7 @@ async function sendToGAS() {
     const response = await fetch(GAS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'log', origin: window.location.origin, logData: logData }),
+      body: JSON.stringify({ action: 'log', origin: window.location.origin, token: 'xK9mP2nQ8rT5vW1yA4bC7dE0fG3hJ6kL', logData: logData }),
       redirect: 'follow'
     });
 
