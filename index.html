@@ -30,7 +30,7 @@
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background: var(--bg);
     color: var(--text);
-    height: 100dvh;
+    height: var(--app-height, 100dvh);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -1001,6 +1001,18 @@ function autoResize(el) {
   el.style.height = 'auto';
   el.style.height = Math.min(el.scrollHeight, 140) + 'px';
 }
+
+// ============================================================
+// Chrome（Android/iOS）対応：実際のウィンドウ高さをCSS変数に反映
+// ============================================================
+function setAppHeight() {
+  document.documentElement.style.setProperty('--app-height', window.innerHeight + 'px');
+}
+window.addEventListener('resize', setAppHeight);
+window.addEventListener('orientationchange', () => {
+  setTimeout(setAppHeight, 200); // 向き変更後に少し待って再計算
+});
+setAppHeight();
 </script>
 </body>
 </html>
